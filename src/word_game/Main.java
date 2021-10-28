@@ -1,9 +1,9 @@
-package assignment4Game;
+package word_game;
 
 public class Main {
 	
 	/*
-	 * 		Application description
+	 * 	Application description
 	 * 
 	 * One long array of random words which is different each time. Random word with
 	 * each iteration, when the submit btn is clicked, and the user can use the hint

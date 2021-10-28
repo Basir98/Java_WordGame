@@ -1,4 +1,4 @@
-package assignment4Game;
+package word_game;
 
 import javax.swing.*;
 import java.awt.Font;
@@ -37,8 +37,6 @@ public class GameGUI extends JFrame {
 		lblWord.setText("Guess the word");
 
 		getContentPane().setForeground(Color.WHITE);
-		getContentPane().setLayout(null);
-
 		getContentPane().setLayout(null);
 
 		JLabel lblHangmanGame = new JLabel("Word Game");
@@ -135,6 +133,66 @@ public class GameGUI extends JFrame {
 		lblWordCategory.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWordCategory.setBounds(171, 13, 117, 25);
 		getContentPane().add(lblWordCategory);
+		
+		JButton btnEndGame = new JButton("End Game");
+		btnEndGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				setEnabled(false);
+				JFrame frame  = new JFrame();
+				JLabel lbl = new JLabel("Result: "+resultCount);
+				lbl.setBounds(110, 30, 100, 25);
+
+				JButton btnEnd = new JButton("END");
+				btnEnd.setBounds(40, 80, 80, 25);
+				
+				
+				
+				btnEnd.setForeground(Color.WHITE);
+				btnEnd.setBackground(Color.RED);
+				btnEnd.addActionListener(new ActionListener() {					
+					public void actionPerformed(ActionEvent e) {
+						System.exit(0);
+					}
+				});
+				
+				
+				JButton btnWordOption = new JButton("Word Option");
+				btnWordOption.setBounds(140, 80, 110, 25);
+				btnWordOption.setForeground(Color.WHITE);
+				btnWordOption.setBackground(Color.BLUE);
+				btnWordOption.addActionListener(new ActionListener() {					
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+						frame.dispose();
+						DialogOption dOption = new DialogOption();
+						dOption.startDialogFrame();
+					}
+				});
+				
+				
+				frame.getContentPane().add(lbl);
+				frame.getContentPane().add(btnEnd);
+				frame.getContentPane().add(btnWordOption);
+
+				
+				frame.getContentPane().setLayout(null);
+
+				frame.setBounds(0, 0, 300, 200);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.getContentPane().setLayout(null);
+				frame.setVisible(true);
+				frame.setResizable(false); // Prevent user from change size
+				frame.setLocationRelativeTo(null); // Start middle screen
+				frame.setTitle("Game finished");
+				
+				
+			}
+		});
+		btnEndGame.setForeground(Color.WHITE);
+		btnEndGame.setBackground(Color.RED);
+		btnEndGame.setBounds(203, 321, 105, 21);
+		getContentPane().add(btnEndGame);
 		
 		
 		btnHint.addActionListener(e -> {

@@ -1,4 +1,4 @@
-package assignment4Game;
+package word_game;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -17,7 +17,7 @@ public class DialogOption extends JFrame {
 	private WordCategory wordCategory;
 	
 	public DialogOption() {
-		getContentPane().setBackground(Color.GRAY);
+		getContentPane().setBackground(Color.WHITE);
 		getContentPane().setForeground(Color.WHITE);
 		getContentPane().setFont(new Font("Tahoma", Font.BOLD, 13));
 		getContentPane().setLayout(null);

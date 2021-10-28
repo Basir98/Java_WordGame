@@ -1,4 +1,4 @@
-package assignment4Game;
+package word_game;
 
 public class Consumer extends Thread {
 	private Words words;

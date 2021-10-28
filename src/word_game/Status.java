@@ -1,4 +1,4 @@
-package assignment4Game;
+package word_game;
 
 public enum Status {
 	Empty,
