@@ -1,5 +1,6 @@
 package word_game;
 
+
 public class Main {
 	
 	/*

@@ -1,24 +1,22 @@
 package word_game;
 
+
 import javax.swing.*;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
-import java.awt.BorderLayout;
 import java.awt.Color;
 
 public class GameGUI extends JFrame {
 
 	JLabel lblWord;
 	private Controller controller;
-	private Random rand = new Random();
-	private JTextField textField;
+	private final Random rand = new Random();
+	private final JTextField textField;
 	private Consumer consumer;
 	private Producer producer;
 	int randomNumber;
-	private JLabel lblStatus;
+	private final JLabel lblStatus;
 	private String masked;
 	JButton btnSubmit;
 	int resultCount = 0;
@@ -54,7 +52,7 @@ public class GameGUI extends JFrame {
 		textField.setColumns(10);
 
 		JButton btnChange = new JButton("Change");
-		btnChange.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnChange.setFont(new Font("Tacoma", Font.BOLD, 13));
 		btnChange.setForeground(Color.BLACK);
 		btnChange.setBackground(new Color(0, 255, 255));
 		btnChange.setBounds(302, 223, 97, 25);
@@ -63,7 +61,7 @@ public class GameGUI extends JFrame {
 		JButton btnHint = new JButton("Hint");
 		btnHint.setForeground(new Color(0, 0, 0));
 		btnHint.setBackground(new Color(0, 255, 255));
-		btnHint.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnHint.setFont(new Font("Tacoma", Font.BOLD, 13));
 		btnHint.setBounds(308, 134, 78, 27);
 		getContentPane().add(btnHint);
 
@@ -77,13 +75,13 @@ public class GameGUI extends JFrame {
 		
 
 		btnSubmit = new JButton("SUBMIT");
-		btnSubmit.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
+		btnSubmit.setFont(new Font("Tacoma", Font.BOLD | Font.ITALIC, 13));
 		btnSubmit.setBackground(Color.DARK_GRAY);
 		btnSubmit.setForeground(new Color(255, 255, 255));
 		btnSubmit.setBounds(146, 223, 97, 25);
 		getContentPane().add(btnSubmit);
 
-		randomNumber = rand.nextInt(length - 0) + 0;
+		randomNumber = rand.nextInt(length);
 		
 		btnSubmit.addActionListener(e -> {
 			
@@ -108,7 +106,7 @@ public class GameGUI extends JFrame {
 			/*
 			 * change the a random word and then decrease the points by 1 
 			 */
-			changeToRandomWord(words);
+			changeToRandomWord(words, randomNumber);
 			btnSubmit.setEnabled(true);
 			
 			if(resultCount > 0) {
@@ -124,7 +122,7 @@ public class GameGUI extends JFrame {
 		
 		lblResult = new JLabel("POINTS: "+resultCount);
 		lblResult.setForeground(Color.BLACK);
-		lblResult.setFont(new Font("Tahoma", Font.ITALIC, 13));
+		lblResult.setFont(new Font("Tacoma", Font.ITALIC, 13));
 		lblResult.setBounds(323, 270, 76, 16);
 		getContentPane().add(lblResult);
 		
@@ -135,59 +133,44 @@ public class GameGUI extends JFrame {
 		getContentPane().add(lblWordCategory);
 		
 		JButton btnEndGame = new JButton("End Game");
-		btnEndGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				setEnabled(false);
-				JFrame frame  = new JFrame();
-				JLabel lbl = new JLabel("Result: "+resultCount);
-				lbl.setBounds(110, 30, 100, 25);
+		btnEndGame.addActionListener(e -> {
 
-				JButton btnEnd = new JButton("END");
-				btnEnd.setBounds(40, 80, 80, 25);
-				
-				
-				
-				btnEnd.setForeground(Color.WHITE);
-				btnEnd.setBackground(Color.RED);
-				btnEnd.addActionListener(new ActionListener() {					
-					public void actionPerformed(ActionEvent e) {
-						System.exit(0);
-					}
-				});
-				
-				
-				JButton btnWordOption = new JButton("Word Option");
-				btnWordOption.setBounds(140, 80, 110, 25);
-				btnWordOption.setForeground(Color.WHITE);
-				btnWordOption.setBackground(Color.BLUE);
-				btnWordOption.addActionListener(new ActionListener() {					
-					public void actionPerformed(ActionEvent e) {
-						dispose();
-						frame.dispose();
-						DialogOption dOption = new DialogOption();
-						dOption.startDialogFrame();
-					}
-				});
-				
-				
-				frame.getContentPane().add(lbl);
-				frame.getContentPane().add(btnEnd);
-				frame.getContentPane().add(btnWordOption);
+			setEnabled(false);
+			JFrame frame  = new JFrame();
+			JLabel lbl = new JLabel("Result: "+resultCount);
+			lbl.setBounds(110, 30, 100, 25);
 
-				
-				frame.getContentPane().setLayout(null);
+			JButton btnEnd = new JButton("END");
+			btnEnd.setBounds(40, 80, 80, 25);
 
-				frame.setBounds(0, 0, 300, 200);
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.getContentPane().setLayout(null);
-				frame.setVisible(true);
-				frame.setResizable(false); // Prevent user from change size
-				frame.setLocationRelativeTo(null); // Start middle screen
-				frame.setTitle("Game finished");
-				
-				
-			}
+			btnEnd.setForeground(Color.WHITE);
+			btnEnd.setBackground(Color.RED);
+			btnEnd.addActionListener(e1 -> System.exit(0));
+
+			JButton btnWordOption = new JButton("Word Option");
+			btnWordOption.setBounds(140, 80, 110, 25);
+			btnWordOption.setForeground(Color.WHITE);
+			btnWordOption.setBackground(Color.BLUE);
+			btnWordOption.addActionListener(e12 -> {
+				dispose();
+				frame.dispose();
+				DialogOption dOption = new DialogOption();
+				dOption.startDialogFrame();
+			});
+
+			frame.getContentPane().add(lbl);
+			frame.getContentPane().add(btnEnd);
+			frame.getContentPane().add(btnWordOption);
+			frame.getContentPane().setLayout(null);
+
+			frame.setBounds(0, 0, 300, 200);
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.getContentPane().setLayout(null);
+			frame.setVisible(true);
+			frame.setResizable(false); // Prevent user from change size
+			frame.setLocationRelativeTo(null); // Start middle screen
+			frame.setTitle("Game finished");
+
 		});
 		btnEndGame.setForeground(Color.WHITE);
 		btnEndGame.setBackground(Color.RED);
@@ -209,43 +192,47 @@ public class GameGUI extends JFrame {
 	
 	
 	/**
-	 * This method changes to a random word, masks the word and displays it
-	 * @param words
+	 * This method changes to a new random word, masks the word and displays it
 	 */
-	public void changeToRandomWord(Words words) {
+	public String changeToRandomWord(Words words, int randomNum) {
 		
-		int wordArraylength = words.getStrArray()[words.getTypeNumber()].length - 1;
-		
-		randomNumber = rand.nextInt(wordArraylength - 0) + 0;
-		
-		String word = words.getStrArray()[words.getTypeNumber()][randomNumber];
-		controller = new Controller();
-		masked = controller.maskString(word, 2);
-		lblWord.setText(masked);
-	}
-	
-	
-	public void displayResultMsg(boolean status) {
-		if(status) {
-			lblStatus.setText("Success");
-			lblStatus.setForeground(new Color(0, 128, 0));
-		}
-		else if(!status) {
-			lblStatus.setText("Fail");
-			lblStatus.setForeground(Color.RED);
-		}
-		int delay = 1000; // milliseconds
-		ActionListener taskPerformer = new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				lblStatus.setText("");
-			}
+		int wordArrayLength = words.getStrArray()[words.getTypeNumber()].length - 1;
 
-		};
+		int newRandomNumber = controller.getRandomWithExclusion(rand, 0, wordArrayLength, randomNum);
+
+		randomNumber = newRandomNumber;
+
+		String newWord = words.getStrArray()[words.getTypeNumber()][newRandomNumber];
+		controller = new Controller();
+		masked = controller.maskString(newWord, 2);
+		lblWord.setText(masked);
+
+		return newWord;
+	}
+
+	/**
+	 *
+	 * @param status true if guessed word was correct and false when guessed word is incorrect
+	 */
+	public boolean displayResultMsg(boolean status) {
+		int delay = 1000; // milliseconds
+		ActionListener taskPerformer = evt -> lblStatus.setText("");
 		Timer tick = new Timer(delay, taskPerformer);
 		tick.setRepeats(false);
 		tick.start();
+
+		if(status) {
+			lblStatus.setText("Success");
+			lblStatus.setForeground(new Color(0, 128, 0));
+			return true;
+		}
+		else {
+			lblStatus.setText("Fail");
+			lblStatus.setForeground(Color.RED);
+			return false;
+		}
 	}
-	
+
 
 	public void startGuiFrame() {
 		setBounds(0, 0, 500, 400);
@@ -255,6 +242,5 @@ public class GameGUI extends JFrame {
 		setResizable(false); // Prevent user from change size
 		setLocationRelativeTo(null); // Start middle screen
 		setTitle("Word game");
-		
 	}
 }

@@ -1,10 +1,10 @@
 package word_game;
 
+
 public class Producer extends Thread {
-	private String input;
-	private Controller controller;
-	private Words words;
-	private int count;
+	private final String input;
+	private final Words words;
+	private final int count;
 	
 	public Producer(String input, Words words) {
 		this.input = input;
@@ -22,7 +22,7 @@ public class Producer extends Thread {
 				e.printStackTrace();
 			}
 		}
-		controller = new Controller();        
+		Controller controller = new Controller();
 		controller.timerTask();
 	}
 

@@ -4,10 +4,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JRadioButton;
-import javax.swing.border.Border;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -19,7 +16,7 @@ public class DialogOption extends JFrame {
 	public DialogOption() {
 		getContentPane().setBackground(Color.WHITE);
 		getContentPane().setForeground(Color.WHITE);
-		getContentPane().setFont(new Font("Tahoma", Font.BOLD, 13));
+		getContentPane().setFont(new Font("Tacoma", Font.BOLD, 13));
 		getContentPane().setLayout(null);
 		
 		JButton btnConfirm = new JButton("CONFIRM");
@@ -30,17 +27,17 @@ public class DialogOption extends JFrame {
 		
 
 		JRadioButton rdbtnCapital = new JRadioButton("Capitals");
-		rdbtnCapital.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
+		rdbtnCapital.setFont(new Font("Tacoma", Font.BOLD | Font.ITALIC, 13));
 		rdbtnCapital.setBounds(21, 9, 127, 25);
 		getContentPane().add(rdbtnCapital);
 		
 		JRadioButton rdbtnBrands = new JRadioButton("Brands");
-		rdbtnBrands.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
+		rdbtnBrands.setFont(new Font("Tacoma", Font.BOLD | Font.ITALIC, 13));
 		rdbtnBrands.setBounds(21, 33, 127, 25);
 		getContentPane().add(rdbtnBrands);
 		
 		JRadioButton rdbtnCountry = new JRadioButton("Countries");
-		rdbtnCountry.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 13));
+		rdbtnCountry.setFont(new Font("Tacoma", Font.BOLD | Font.ITALIC, 13));
 		rdbtnCountry.setBounds(21, 57, 127, 25);
 		getContentPane().add(rdbtnCountry);
 		

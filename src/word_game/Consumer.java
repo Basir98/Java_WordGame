@@ -1,14 +1,11 @@
 package word_game;
 
 public class Consumer extends Thread {
-	private Words words;
-	private GameGUI gui;
-	private Controller controller;
-	private int randomNumber;
-	private int count;
-	private String inputText= "";
-	
-	
+	private final Words words;
+	private final GameGUI gui;
+	private final int randomNumber;
+	private final int count;
+
 	public Consumer(GameGUI gui, Words words, int randomNum, int textLength) {
 		this.gui = gui;
 		this.words= words; 
@@ -19,21 +16,25 @@ public class Consumer extends Thread {
 	
 	public void run() {
 		int i = 0;
+		StringBuilder sb = new StringBuilder();
 		while(i <= count) {
 			char c;
 			try {
 				c = words.getChar();    // get character from words
-				inputText += c;			// add the character to the inputText
+				sb.append(c);
+				//inputText += c;			// add the character to the inputText
 				i++;
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			
 		}
-		controller = new Controller();     
+		Controller controller = new Controller();
 		controller.timerTask();
-		
+
+
 		//check the input
-		controller.checkInput(words, inputText, randomNumber, gui);
+		controller.checkInput(words, sb.toString(), randomNumber, gui);
+
 	}
 }
