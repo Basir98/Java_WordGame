@@ -6,7 +6,7 @@ import java.util.LinkedList;
 public class Words {
 
 	/**
-	 * TODO
+	 * TODO Difficulty levels can be added which should affect the difficulty level of words the user has to guess. An api can be used to fetch data
 	 */
 
 	
